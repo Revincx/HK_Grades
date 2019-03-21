@@ -211,8 +211,9 @@ public class Main
 		Grade grade = new Grade();
 		int l = findIndex(source, "\\[");
 		int r = findIndex(source, "\\]");
+		int name_end = findIndex(source, "</p>");
 		grade.examNum = source.substring(l + 1, r);
-		grade.name = source.substring(r + 2, r + 4);
+		grade.name = source.substring(r + 2, name_end).trim();
 		grade.eng = source.substring(findIndex(source, "外语") + 31, findIndex(source, "外语") + 32);
 		grade.chinese = source.substring(findIndex(source, "语文") + 31, findIndex(source, "语文") + 32);
 		grade.math = source.substring(findIndex(source, "数学") + 31, findIndex(source, "数学") + 32);
