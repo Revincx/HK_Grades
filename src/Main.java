@@ -13,11 +13,13 @@ import jxl.read.biff.BiffException;
 
 public class Main
 {
+	static int MAX = 1660;
 	public static void main(String[] args) throws IOException,WriteException,RowsExceededException
 	{
 		String head = "16160317";
 		int num = 1;
 		File grades = new File("/storage/emulated/0/AppProjects/Java/grades.xls");
+		grades.createNewFile();
 		WritableWorkbook book = Workbook.createWorkbook(grades);
 		WritableSheet sheet = book.createSheet("Grades", 0);
 		sheet.addCell(new Label(0, 0, "准考证号"));
@@ -33,12 +35,8 @@ public class Main
 		sheet.addCell(new Label(10, 0, "地理"));
 		book.write();
 		book.close();
-		for (int i=0;i <= 9999;i++)
+		for (int i=1;i <= MAX;i++)
 		{
-			if (i == 9999)
-			{
-				System.out.println("数据获取完毕");
-			}
 			String ne = "";
 			int length = Integer.toString(i).length();
 			switch (length)
@@ -69,6 +67,10 @@ public class Main
 					e.printStackTrace();
 				}
 				num++;
+			}
+			if (i == MAX)
+			{
+				System.out.println("数据获取完毕");
 			}
 		}
 	}
